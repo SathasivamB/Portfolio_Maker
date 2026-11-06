@@ -37,7 +37,23 @@ app.use((req, res, next) => {
 });
 
 // 2. CORS & Payload Limitation (prevents Memory Exhaustion DoS)
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:5000',
+  'http://localhost:5173',
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, curl, Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true
+}));
 app.use(express.json({ limit: '1mb' }));
 app.use(express.static(distPath));
 
@@ -1750,6 +1766,11 @@ app.post('/api/feedback', (req, res) => {
     message: 'Thank you! Your beta feedback has been logged directly with our engineering team.',
     feedback: feedbackEntry
   });
+});
+
+// Health check endpoint (for Railway and uptime monitors)
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
 // SPA wildcard fallback: enables /u/:username, /p/:username, /@:username, /sathasivamb on port 5001 as well
