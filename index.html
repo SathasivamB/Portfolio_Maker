@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232340FF'/><circle cx='16' cy='16' r='6' fill='%23FFD84D'/></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Turn your GitHub repositories and creative work into high-craft, Figma-grade portfolios in minutes. 12 archetypes with real-time editing." />
+    <meta name="theme-color" content="#2340FF" />
+    <meta property="og:title" content="Folio AI | Premium Developer & Creator Portfolios" />
+    <meta property="og:description" content="AI-synthesized portfolios with 12 Figma-grade archetypes, real-time editing, and live device previews." />
+    <meta property="og:type" content="website" />
+    <title>Folio AI | Premium AI-Powered Portfolio Generator</title>
+    <!-- Self-healing: Automatically unregister any stale localhost Service Workers that hijack network traffic -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for (var i = 0; i < registrations.length; i++) {
+            registrations[i].unregister().then(function() {
+              console.log('✓ Successfully unregistered stale Service Worker');
+            });
+          }
+        }).catch(function() {});
+        if ('caches' in window) {
+          caches.keys().then(function(names) {
+            for (var j = 0; j < names.length; j++) caches.delete(names[j]);
+          }).catch(function() {});
+        }
+      }
+    </script>
+    <!-- Space Grotesk, DM Sans & Monospace Fonts (Folio AI v2) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Space+Grotesk:wght@500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  </head>
+  <body class="bg-[#F3F4F8] text-[#0A0A12] antialiased selection:bg-[#FFD84D] selection:text-[#0A0A12]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

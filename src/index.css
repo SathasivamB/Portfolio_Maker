@@ -1,0 +1,919 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #F3F4F8;
+    --bg-panel: #E8ECFF;
+    --bg-card: #FFFFFF;
+    --border-subtle: #0A0A12;
+    --text-primary: #0A0A12;
+    --text-secondary: #55586B;
+    --text-muted: #7A8C84;
+    --accent-primary: #2340FF;
+    --accent-bright: #2340FF;
+    --accent-highlight: #FFD84D;
+    --accent-success: #7CFFB2;
+    --font-heading: 'Space Grotesk', system-ui, sans-serif;
+    --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: ui-monospace, 'JetBrains Mono', monospace;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #F3F4F8;
+    color: #0A0A12;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    background-color: #F3F4F8;
+    color: #0A0A12;
+    overflow-x: hidden;
+    letter-spacing: -0.005em;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Apple-Design Optical Typography Hierarchy */
+  h1 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.032em;
+    line-height: 1.05;
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.024em;
+    line-height: 1.15;
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.016em;
+    line-height: 1.25;
+  }
+
+  h4 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.010em;
+    line-height: 1.35;
+  }
+
+  /* Optical Positive Tracking on Metadata Badges & Monospace Tags */
+  .tg, .tag, [class*="text-[9px]"], [class*="text-[10px]"], [class*="text-[11px]"] {
+    letter-spacing: 0.035em;
+  }
+
+  #root {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #F3F4F8;
+  }
+
+  ::selection {
+    background-color: #FFD84D;
+    color: #0A0A12;
+  }
+}
+
+/* ============================================================================
+   FOLIO AI V2 NEO-BRUTALIST DESIGN SYSTEM (from Folio AI (1).html)
+   ============================================================================ */
+
+/* Box Container with Hard Neo-Brutalist Shadow */
+@layer components {
+  .bx {
+    background: #FFFFFF;
+    border: 2px solid #0A0A12;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 6px 6px 0px #0A0A12;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bx-hover {
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bx-hover:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px #0A0A12;
+  }
+
+  .bx-yellow {
+    background: #FFD84D !important;
+    background-color: #FFD84D !important;
+    color: #0A0A12 !important;
+  }
+
+  .bx-blue {
+    background: #2340FF !important;
+    background-color: #2340FF !important;
+    color: #FFFFFF !important;
+  }
+
+  .bx-dark {
+    background: #0A0A12 !important;
+    background-color: #0A0A12 !important;
+    color: #FFFFFF !important;
+  }
+
+  .bx-lavender {
+    background: #E8ECFF !important;
+    background-color: #E8ECFF !important;
+    color: #0A0A12 !important;
+  }
+}
+
+/* Pill Buttons */
+.pill {
+  border-radius: 999px;
+  border: 2px solid #0A0A12;
+  padding: 0 24px;
+  min-height: 48px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+@media (max-width: 640px) {
+  .bx {
+    padding: 16px !important;
+    border-radius: 20px !important;
+    box-shadow: 4px 4px 0px #0A0A12 !important;
+  }
+  .pill {
+    padding: 0 16px;
+    min-height: 42px;
+    font-size: 13px;
+    gap: 6px;
+  }
+  .in {
+    padding: 10px 12px !important;
+    min-height: 42px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.pill:active:not(:disabled) {
+  transform: translate(2px, 2px) scale(0.985) !important;
+  box-shadow: 1px 1px 0px #0A0A12 !important;
+}
+
+.pill.b1 {
+  background: #2340FF;
+  color: #FFFFFF;
+  box-shadow: 3px 3px 0px #0A0A12;
+}
+
+.pill.b1:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px #0A0A12;
+}
+
+.pill.by {
+  background: #FFD84D;
+  color: #0A0A12;
+  box-shadow: 3px 3px 0px #0A0A12;
+}
+
+.pill.by:hover:not(:disabled) {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px #0A0A12;
+}
+
+.pill.b2 {
+  background: #FFFFFF;
+  color: #0A0A12;
+  box-shadow: 2px 2px 0px #0A0A12;
+}
+
+.pill.b2:hover:not(:disabled) {
+  background: #F3F4F8;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px #0A0A12;
+}
+
+/* Inputs */
+.in {
+  background: #FFFFFF;
+  border: 2px solid #0A0A12;
+  border-radius: 14px;
+  padding: 12px 14px;
+  min-height: 48px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: #0A0A12;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.in:focus {
+  border-color: #2340FF;
+  box-shadow: 0 0 0 3px rgba(35, 64, 255, 0.25), 3px 3px 0px #0A0A12;
+  background: #FFFFFF;
+}
+
+/* Tags */
+.tg {
+  border: 2px solid #0A0A12;
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  background: #FFFFFF;
+  color: #0A0A12;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Logo */
+.lg {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.03em;
+}
+
+.lg i {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #FFD84D;
+  border: 2px solid #0A0A12;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+   CANONICAL FOLIO AI UTILITIES & DESIGN TOKENS
+   ============================================================================ */
+
+/* Brand leaf / bubble mark */
+.mk {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #FFD84D;
+  border: 2px solid #0A0A12;
+  display: inline-block;
+  flex-shrink: 0;
+  box-shadow: 1px 1px 0px #0A0A12;
+}
+
+/* Primary Button */
+.btn {
+  background: #2340FF;
+  color: #FFFFFF;
+  border: 2px solid #0A0A12;
+  border-radius: 12px;
+  padding: 0 20px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px #0A0A12;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px #0A0A12;
+  filter: brightness(1.05);
+}
+
+.btn:active:not(:disabled) {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 1px 1px 0px #0A0A12 !important;
+}
+
+/* Secondary Button (bs) */
+.btn.bs,
+.btn-bs,
+.btn-secondary {
+  background: #FFFFFF;
+  color: #0A0A12;
+  border: 2px solid #0A0A12;
+  box-shadow: 2px 2px 0px #0A0A12;
+  font-weight: 700;
+}
+
+.btn.bs:hover:not(:disabled),
+.btn-bs:hover:not(:disabled),
+.btn-secondary:hover:not(:disabled) {
+  background: #F3F4F8;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px #0A0A12;
+}
+
+/* Destructive Button */
+.btn.bd {
+  background: #FFFFFF;
+  color: #EF4444;
+  border: 2px solid #0A0A12;
+  box-shadow: 2px 2px 0px #0A0A12;
+  font-weight: 700;
+}
+
+.btn.bd:hover:not(:disabled) {
+  background: #FEE2E2;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px #0A0A12;
+}
+
+/* Elevated Card */
+.card,
+.folio-card {
+  background: #FFFFFF;
+  border: 2px solid #0A0A12;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 4px 4px 0px #0A0A12;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover,
+.folio-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0px #0A0A12;
+}
+
+/* Rounded Browser Frame */
+.br {
+  border: 2px solid #0A0A12;
+  border-radius: 16px;
+  background: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 4px 4px 0px #0A0A12;
+}
+
+/* Browser URL bar / dots */
+.dots {
+  padding: 10px 14px;
+  border-bottom: 2px solid #0A0A12;
+  font: 11px ui-monospace, 'JetBrains Mono', monospace;
+  color: #55586B;
+  background: #F3F4F8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Input Fields - Clean White High-Contrast */
+.folio-input {
+  background: #FFFFFF;
+  border: 2px solid #0A0A12;
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #0A0A12;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  min-height: 44px;
+  transition: all 0.15s ease;
+}
+
+.folio-input:focus {
+  outline: none;
+  border-color: #2340FF;
+  box-shadow: 0 0 0 3px rgba(35, 64, 255, 0.25), 3px 3px 0px #0A0A12;
+  background: #FFFFFF;
+}
+
+/* Status / Pill Tags */
+.tag,
+.folio-tag {
+  font: 12px ui-monospace, 'JetBrains Mono', monospace;
+  color: #0A0A12;
+  background: #FFFFFF;
+  border: 2px solid #0A0A12;
+  border-radius: 999px;
+  padding: 4px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  box-shadow: 1px 1px 0px #0A0A12;
+}
+
+.tag.ok {
+  color: #0A0A12;
+  border-color: #0A0A12;
+  background: #7CFFB2;
+}
+
+.tag.active {
+  background: #2340FF;
+  color: #FFFFFF;
+  border-color: #0A0A12;
+}
+
+.m {
+  color: #51605A;
+}
+
+.ok {
+  color: #0A7A4F;
+}
+
+/* ============================================================================
+   CANONICAL AGENTFOLIO UTILITIES & GLASSMORPHISM
+   ============================================================================ */
+
+/* Obsidian Bento Glass Panel */
+.bento-panel {
+  background: #0A0A0A;
+  border: 1px solid #252525;
+  border-radius: 1.25rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-panel-hover:hover {
+  border-color: rgba(139, 92, 246, 0.45);
+  box-shadow: 0 0 30px -5px rgba(139, 92, 246, 0.15);
+}
+
+/* Elevated Card */
+.agent-card {
+  background: #101010;
+  border: 1px solid #252525;
+  border-radius: 1rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.agent-card:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: #141414;
+}
+
+/* Primary Electric Violet Button */
+.agent-btn-primary {
+  background: #8B5CF6;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  border-radius: 0.75rem;
+  padding: 0.625rem 1.25rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+}
+
+.agent-btn-primary:hover {
+  background: #A78BFA;
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+  transform: translateY(-1px);
+}
+
+.agent-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Charcoal Button */
+.agent-btn-secondary {
+  background: #101010;
+  border: 1px solid #252525;
+  color: #F5F5F5;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  padding: 0.625rem 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.agent-btn-secondary:hover {
+  background: #181818;
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #FFFFFF;
+}
+
+/* Clean Input Styling */
+.agent-input {
+  background: #101010;
+  border: 1px solid #252525;
+  color: #F5F5F5;
+  border-radius: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.agent-input:focus {
+  outline: none;
+  border-color: #8B5CF6;
+  background: #141414;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25);
+}
+
+/* Subtle Hairline Dividers */
+.agent-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #737373;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.agent-divider::before,
+.agent-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #252525;
+}
+
+/* Terminal Monospace Styling */
+.terminal-window {
+  background: #070707;
+  border: 1px solid #252525;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+  font-family: var(--font-mono);
+  overflow: hidden;
+}
+
+.terminal-header {
+  background: #0A0A0A;
+  border-bottom: 1px solid #252525;
+  padding: 0.5rem 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #252525;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8B5CF6;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* ============================================================================
+   AESTHETIC MICRO-ANIMATIONS & TACTILE WORKFLOW SUITE
+   ============================================================================ */
+
+/* 1. Tactile Active Press Physics for Neo-Brutalist Controls */
+.interactive-press:active,
+button.interactive-press:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 1px 1px 0px #0A0A12 !important;
+}
+
+/* 2. Spring Physics for Toggle Switches & Knobs */
+.toggle-knob {
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease !important;
+}
+
+.toggle-switch-track {
+  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+/* 3. Smooth Neo-Brutalist Lift for Cards */
+.card-lift {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0px #0A0A12;
+  border-color: #0A0A12;
+}
+
+/* 4. Organic Live Signal Pulse Indicators */
+@keyframes livePulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(124, 255, 178, 0.8);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 7px rgba(124, 255, 178, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(124, 255, 178, 0);
+  }
+}
+
+@keyframes livePulseBlue {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(35, 64, 255, 0.8);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 7px rgba(35, 64, 255, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(35, 64, 255, 0);
+  }
+}
+
+.live-pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0A7A4F;
+  border: 1.5px solid #0A0A12;
+  animation: livePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.live-pulse-blue {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2340FF;
+  border: 1.5px solid #0A0A12;
+  animation: livePulseBlue 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 5. Metallic Shimmer Sweep for Badges & Highlights */
+@keyframes shimmerSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.neo-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerSweep 3.5s infinite linear;
+}
+
+/* 6. Gentle Floating Motion for Badges and Floating UI */
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-float {
+  animation: gentleFloat 3.5s ease-in-out infinite;
+}
+
+/* 7. Snappy Pop-In for Modals and Step Transitions */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-pop-in {
+  animation: popIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 8. Interactive Tags and Micro-Badges */
+.tg-interactive {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.tg-interactive:hover {
+  transform: translateY(-1.5px) scale(1.02);
+  border-color: #2340FF;
+  box-shadow: 2px 2px 0px #0A0A12;
+}
+
+.tg-interactive:active {
+  transform: translate(1px, 1px) scale(0.99);
+  box-shadow: 0px 0px 0px #0A0A12;
+}
+
+/* ============================================================================
+   APPLE DESIGN ENGINEERING STANDARDS (from WWDC & Emil Kowalski Skills)
+   ============================================================================ */
+
+/* 9. Floating Translucent Materials (Light-Catching Edges) */
+.glass-chrome {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 2px solid #0A0A12;
+  box-shadow: 0 4px 20px -2px rgba(10, 10, 18, 0.05);
+}
+
+.glass-chrome-dark {
+  background: rgba(10, 10, 18, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+}
+
+/* 10. Apple Accessibility & Reduced Motion Standards */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-pulse, .animate-bounce, .animate-fade-in, .animate-pop-in, .animate-spin, .animate-blob, .animate-float, .animate-shimmer {
+    animation: none !important;
+  }
+}
+
+/* 11. Apple Reduced Transparency Fallbacks */
+@media (prefers-reduced-transparency: reduce) {
+  .backdrop-blur-sm, 
+  .backdrop-blur-md, 
+  .backdrop-blur-lg, 
+  .glass-chrome, 
+  .glass-chrome-dark {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: #FFFFFF !important;
+  }
+}
+
+/* 12. Apple High Contrast Mode */
+@media (prefers-contrast: more) {
+  .bx, .pill, input, button {
+    border-width: 2.5px !important;
+    border-color: #000000 !important;
+  }
+  .tg {
+    border-width: 2px !important;
+  }
+}
+
+/* 13. Emil Kowalski Motion Easing & Tab Transitions */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes tabContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tab-content {
+  animation: tabContentIn 180ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes modalBackdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-backdrop-in {
+  animation: modalBackdropFadeIn 200ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-in {
+  animation: modalScaleIn 220ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* 14. POG Studio Warm Editorial & Claymorphic Design Tokens */
+:root {
+  --pog-cream: 42 75% 90%;
+  --pog-peach: 18 75% 78%;
+  --pog-rose: 8 50% 65%;
+  --pog-maroon: 8 65% 22%;
+  --pog-maroon-soft: 8 45% 35%;
+  --pog-ink: 8 70% 15%;
+
+  --pog-gradient-hero: linear-gradient(135deg, hsl(48 80% 90%) 0%, hsl(32 75% 85%) 35%, hsl(18 70% 78%) 70%, hsl(8 55% 72%) 100%);
+  --pog-gradient-radial: radial-gradient(ellipse at 30% 20%, hsl(50 85% 92%) 0%, hsl(22 70% 80%) 55%, hsl(8 50% 68%) 100%);
+  --pog-shadow-bold: 8px 8px 0 hsl(8 65% 22% / 0.15);
+}
+
+.grid-paper {
+  background-image:
+    linear-gradient(hsl(8 65% 22% / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(8 65% 22% / 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.shadow-bold {
+  box-shadow: 8px 8px 0 hsl(8 65% 22% / 0.15);
+}
+
+.bg-radial-hero {
+  background: var(--pog-gradient-radial);
+}
+
+.bg-hero-warm {
+  background: var(--pog-gradient-hero);
+}

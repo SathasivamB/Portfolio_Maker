@@ -1,0 +1,120 @@
+/* ==========================================================================
+   AGENTFOLIO CANONICAL STYLESHEET (style.css)
+   Clean typography, crisp borders, obsidian panels, and electric violet accents
+   ========================================================================== */
+
+:root {
+  --bg-primary: #050505;
+  --bg-panel: #0A0A0A;
+  --bg-card: #101010;
+  --border-subtle: #252525;
+  --text-primary: #F5F5F5;
+  --text-secondary: #A3A3A3;
+  --text-muted: #737373;
+  --accent-violet: #8B5CF6;
+  --accent-hover: #A78BFA;
+  --accent-success: #34D399;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #050505;
+  color: #F5F5F5;
+  letter-spacing: -0.015em;
+}
+
+/* Obsidian Bento Card */
+.neat-card {
+  background: #0A0A0A;
+  border: 1px solid #252525;
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9), 0 0 30px -10px rgba(139, 92, 246, 0.1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neat-card:hover {
+  border-color: rgba(139, 92, 246, 0.45);
+  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.95), 0 0 35px -5px rgba(139, 92, 246, 0.2);
+}
+
+/* Input */
+.neat-input {
+  background: #101010;
+  border: 1px solid #252525;
+  color: #F5F5F5;
+  border-radius: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neat-input:focus {
+  outline: none;
+  border-color: #8B5CF6;
+  background: #141414;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25);
+}
+
+/* Primary Electric Violet Button */
+.neat-primary-btn {
+  background: #8B5CF6;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  border-radius: 0.75rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+}
+
+.neat-primary-btn:hover {
+  background: #A78BFA;
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+  transform: translateY(-1px);
+}
+
+.neat-primary-btn:active {
+  transform: translateY(0);
+}
+
+/* Secondary Charcoal Button */
+.neat-secondary-btn {
+  background: #101010;
+  border: 1px solid #252525;
+  color: #F5F5F5;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.neat-secondary-btn:hover {
+  background: #181818;
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #FFFFFF;
+}
+
+/* Hairline Divider */
+.neat-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #737373;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.neat-divider::before,
+.neat-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #252525;
+}
