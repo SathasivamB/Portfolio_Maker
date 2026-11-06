@@ -87,12 +87,22 @@ export default function AuthPage({ onLoginSuccess, initialPathway = 'placements'
     const oauthError = params.get('error');
 
     if (oauthError) {
+      if (window.opener && window.opener !== window) {
+        window.opener.postMessage({ type: 'OAUTH_ERROR', error: decodeURIComponent(oauthError) }, '*');
+        window.close();
+        return;
+      }
       setError(decodeURIComponent(oauthError));
       window.history.replaceState({}, '', window.location.pathname);
       return () => window.removeEventListener('message', handleMessage);
     }
 
     if (oauthSuccess === 'true' && username) {
+      if (window.opener && window.opener !== window) {
+        window.opener.postMessage({ type: 'OAUTH_SUCCESS', username }, '*');
+        window.close();
+        return;
+      }
       setIsLoading(true);
 
       fetch(`/api/auth/user/${username}`)

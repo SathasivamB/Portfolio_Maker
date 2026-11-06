@@ -124,6 +124,21 @@ app.get('/api/health', (req, res) => {
  */
 
 /**
+ * Helper to dynamically resolve OAuth callback URL
+ */
+function resolveOAuthCallback(provider, req) {
+  if (provider === 'github' && process.env.GITHUB_CALLBACK_URL) return process.env.GITHUB_CALLBACK_URL;
+  if (provider === 'google' && process.env.GOOGLE_CALLBACK_URL) return process.env.GOOGLE_CALLBACK_URL;
+  if (process.env.BACKEND_URL) return `${process.env.BACKEND_URL.replace(/\/$/, '')}/api/auth/${provider}/callback`;
+  const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+  const host = req.headers['x-forwarded-host'] || req.get('host');
+  if (host && !host.includes('localhost')) {
+    return `${proto}://${host}/api/auth/${provider}/callback`;
+  }
+  return `http://localhost:5001/api/auth/${provider}/callback`;
+}
+
+/**
  * GET /api/auth/github
  * Initiates Real GitHub OAuth 2.0 Authorization Flow
  */
@@ -132,7 +147,7 @@ app.get('/api/auth/github', (req, res) => {
   if (!clientId) {
     return res.status(500).json({ error: 'GitHub Client ID is not configured in .env' });
   }
-  const redirectUri = process.env.GITHUB_CALLBACK_URL || `${process.env.BACKEND_URL || 'http://localhost:5001'}/api/auth/github/callback`;
+  const redirectUri = resolveOAuthCallback('github', req);
   const scope = 'read:user,public_repo,user:email';
   const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}`;
   res.redirect(githubAuthUrl);
@@ -153,6 +168,7 @@ app.get('/api/auth/github/callback', async (req, res) => {
 
   try {
     // 1. Exchange authorization code for Access Token
+    const redirectUri = resolveOAuthCallback('github', req);
     const tokenRes = await fetch('https://github.com/login/oauth/access_token', {
       method: 'POST',
       headers: {
@@ -164,7 +180,7 @@ app.get('/api/auth/github/callback', async (req, res) => {
         client_id: process.env.GITHUB_CLIENT_ID,
         client_secret: process.env.GITHUB_CLIENT_SECRET,
         code,
-        redirect_uri: process.env.GITHUB_CALLBACK_URL || `${process.env.BACKEND_URL || 'http://localhost:5001'}/api/auth/github/callback`
+        redirect_uri: redirectUri
       })
     });
 
@@ -358,7 +374,7 @@ app.get('/api/auth/google', (req, res) => {
   if (!clientId) {
     return res.status(500).json({ error: 'Google Client ID is not configured in .env' });
   }
-  const redirectUri = process.env.GOOGLE_CALLBACK_URL || `${process.env.BACKEND_URL || 'http://localhost:5001'}/api/auth/google/callback`;
+  const redirectUri = resolveOAuthCallback('google', req);
   const scope = 'openid profile email';
   const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=${encodeURIComponent(scope)}&access_type=offline&prompt=consent`;
   res.redirect(googleAuthUrl);
@@ -379,6 +395,7 @@ app.get('/api/auth/google/callback', async (req, res) => {
 
   try {
     // 1. Exchange authorization code for Google Access Token
+    const redirectUri = resolveOAuthCallback('google', req);
     const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',
       headers: {
@@ -388,7 +405,7 @@ app.get('/api/auth/google/callback', async (req, res) => {
         code,
         client_id: process.env.GOOGLE_CLIENT_ID,
         client_secret: process.env.GOOGLE_CLIENT_SECRET,
-        redirect_uri: process.env.GOOGLE_CALLBACK_URL || `${process.env.BACKEND_URL || 'http://localhost:5001'}/api/auth/google/callback`,
+        redirect_uri: redirectUri,
         grant_type: 'authorization_code'
       })
     });
