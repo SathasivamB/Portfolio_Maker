@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://RAILWAY_BACKEND_URL/api/$1"
+      "destination": "https://portfolio-maker-api-1b51.onrender.com/api/$1"
     },
     {
       "source": "/(.*)",
